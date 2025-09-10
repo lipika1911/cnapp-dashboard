@@ -1,0 +1,113 @@
+[
+  {
+    "id": "cspm",
+    "name": "CSPM Executive Dashboard",
+    "widgets": [
+      {
+        "id": "cloud-accounts",
+        "name": "Cloud Accounts",
+        "chart": "pie",
+        "data": {
+          "connected": 12,
+          "notConnected": 3
+        }
+      },
+      {
+        "id": "cloud-account-risk",
+        "name": "Cloud Account Risk Assessment",
+        "chart": "pie",
+        "data": {
+          "failed": 28,
+          "warning": 36,
+          "passed": 40,
+          "notAvailable": 9
+        }
+      }
+    ]
+  },
+  {
+    "id": "cwpp",
+    "name": "CWPP Dashboard",
+    "widgets": [
+      {
+        "id": "top-5-alerts",
+        "name": "Top Alerts",
+        "chart": "bar",
+        "data": {
+          "a": 10,
+          "b": 7,
+          "c": 4,
+          "d": 6,
+          "e": 8
+        }
+      },
+      {
+        "id": "workload-alerts",
+        "name": "Workload Alerts",
+        "chart": "pie",
+        "data": {
+          "critical": 9,
+          "high": 12,
+          "medium": 20,
+          "low": 5
+        }
+      }
+    ]
+  },
+  {
+    "id": "registry",
+    "name": "Registry Scan",
+    "widgets": [
+      {
+        "id": "image-risk-assessment",
+        "name": "Image Risk Assessment",
+        "chart": "bar",
+        "data": {
+          "critical": 19,
+          "high": 67,
+          "moderate": 34,
+          "low": 13
+        },
+        "totalVulnerabilities": 1470
+      },
+      {
+        "id": "image-security-issues",
+        "name": "Image Security Issues",
+        "chart": "bar",
+        "data": {
+          "critical": 10,
+          "high": 25,
+          "moderate": 40,
+          "low": 30
+        },
+        "totalVulnerabilities": 2
+      }
+    ]
+  },
+  {
+    "id": "tickets",
+    "name": "Tickets",
+    "widgets": [
+      {
+        "id": "open-tickets",
+        "name": "Open Tickets",
+        "chart": "bar",
+        "data": {
+          "critical": 3,
+          "high": 8,
+          "medium": 15,
+          "low": 5
+        }
+      },
+      {
+        "id": "closed-tickets",
+        "name": "Closed Tickets",
+        "chart": "bar",
+        "data": {
+          "last7Days": 12,
+          "last30Days": 50
+        }
+      }
+    ]
+  }
+]
