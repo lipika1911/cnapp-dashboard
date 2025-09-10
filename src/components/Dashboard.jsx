@@ -1,55 +1,57 @@
-import { useState } from "react";
+import { WidgetCard } from "./WidgetCard";
+import { AddWidgetSidebar } from "./AddWidgetSidebar";
+import { useDashboardStore } from "../store/dashboard-store";
 import AddIcon from "@mui/icons-material/Add";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import SearchIcon from "@mui/icons-material/Search";
 import { Button } from "@mui/material";
-import { AddWidgetSidebar } from "./AddWidgetSidebar";
 
 export function Dashboard() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const {
+    categories,
+    activeWidgets,
+    setSidebarOpen,
+    openSidebarWithCategory,
+  } = useDashboardStore();
 
-  const categories = [
-    {
-      id: "cpsm",
-      name: "CPSM",
-      widgets: [
-        { id: "cloud-accounts", name: "Cloud Accounts", chart: "pie" },
-        { id: "risk-assessment", name: "Risk Assessment", chart: "pie" },
-      ],
-    },
-    {
-      id: "cwpp",
-      name: "CWPP",
-      widgets: [
-        { id: "top-alerts", name: "Top 5 Alerts", chart: "bar" },
-        { id: "vulnerabilities", name: "Vulnerabilities", chart: "bar" },
-      ],
-    },
-  ];
+  const allWidgets = categories.flatMap((category) => category.widgets);
+  const activeWidgetData = allWidgets.filter((widget) =>
+    activeWidgets.includes(widget.id)
+  );
+
+  const categoryGroups = categories.map((category) => ({
+    ...category,
+    widgets: category.widgets.filter((widget) =>
+        activeWidgets.includes(widget.id)
+    ),
+    }));
+
 
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-6">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
           <h1 className="text-2xl font-bold text-gray-900">CNAPP Dashboard</h1>
           <div className="flex items-center gap-4 flex-wrap">
             <Button
               variant="outlined"
               size="medium"
-              className="flex items-center gap-2"
               onClick={() => setSidebarOpen(true)}
+              className="flex items-center gap-2"
             >
               <span>Add Widget</span>
               <AddIcon fontSize="small" />
             </Button>
+
             <Button variant="outlined" size="medium">
               <RefreshIcon fontSize="medium" />
             </Button>
+
             <Button variant="outlined" size="medium">
               <MoreVertIcon fontSize="medium" />
             </Button>
+
             <Button
               variant="contained"
               size="medium"
@@ -75,41 +77,45 @@ export function Dashboard() {
           </div>
         </div>
 
-        
         <div className="space-y-8">
-          {categories.map((category) => (
+          {categoryGroups.map((category) => (
             <div key={category.id}>
               <h2 className="text-lg font-semibold text-gray-900 mb-4">
                 {category.name}
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                 {category.widgets.map((widget) => (
-                  <div
+                  <WidgetCard
                     key={widget.id}
-                    className="border border-gray-300 rounded-lg p-4 bg-white shadow-sm hover:shadow-md transition"
-                  >
-                    <h3 className="font-medium text-gray-800 mb-2">
-                      {widget.name}
-                    </h3>
-                    <div className="mt-4 h-24 bg-gray-100 rounded flex items-center justify-center text-gray-400 text-sm">
-                      [ Chart Data ]
-                    </div>
-                  </div>
+                    widget={widget}
+                  />
                 ))}
-                <div
-                  onClick={() => setSidebarOpen(true)}
-                  className="border border-dashed border-gray-300 rounded-lg p-4 bg-gray-50 hover:bg-gray-100 cursor-pointer flex flex-col items-center justify-center text-gray-500 text-sm"
-                >
-                  <AddIcon fontSize="small" />
-                  Add Widget
-                </div>
+                <WidgetCard
+                    isEmpty
+                    onAddWidget={() => openSidebarWithCategory(category.id)}
+                />
               </div>
             </div>
           ))}
+
+          {activeWidgetData.length === 0 && (
+            <div className="text-center py-12">
+              <h3 className="text-lg font-medium text-gray-900 mb-2">
+                No widgets added yet
+              </h3>
+              <p className="text-gray-500 mb-4">
+                Start by adding some widgets to your dashboard
+              </p>
+              <Button onClick={() => setSidebarOpen(true)}>
+                <AddIcon className="mr-2" fontSize="small" />
+                Add Widget
+              </Button>
+            </div>
+          )}
         </div>
       </div>
 
-      <AddWidgetSidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <AddWidgetSidebar />
     </div>
   );
 }

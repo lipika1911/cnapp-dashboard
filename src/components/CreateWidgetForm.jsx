@@ -1,14 +1,16 @@
-import { useState } from "react"
+import React, { useState } from "react"
 import { Button } from "@mui/material"
+import { useDashboardStore } from "../store/dashboard-store"
 
-export default function CreateWidgetForm({ onCancel, onCreate }) {
+export default function CreateWidgetForm({ categoryId }) {
+  const { addCustomWidget, setShowCreateCustomWidget } = useDashboardStore()
   const [widgetName, setWidgetName] = useState("")
   const [widgetText, setWidgetText] = useState("")
 
   const handleSubmit = (e) => {
     e.preventDefault()
     if (widgetName.trim() && widgetText.trim()) {
-      onCreate?.({ name: widgetName.trim(), text: widgetText.trim() })
+      addCustomWidget(categoryId, widgetName.trim(), widgetText.trim())
       setWidgetName("")
       setWidgetText("")
     }
@@ -52,7 +54,7 @@ export default function CreateWidgetForm({ onCancel, onCreate }) {
             type="button"
             variant="outlined"
             size="small"
-            onClick={onCancel}
+            onClick={() => setShowCreateCustomWidget(false)}
           >
             Cancel
           </Button>
