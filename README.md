@@ -1,12 +1,62 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# CNAPP Dashboard
 
-Currently, two official plugins are available:
+A cloud-native application security dashboard built with **React, Vite, Tailwind CSS, MUI, Recharts, and Zustand.**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Interactive dashboard layout
+
+- Modular widget system using Zustand state management
+
+- Charts & visualizations powered by Recharts
+
+- Styled with TailwindCSS + MUI components
+
+- Fast development with Vite
+
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React (with Vite)
+
+- **Styling**: Tailwind CSS, MUI
+
+- **State Management**: Zustand
+
+- **Charts**: Recharts
+
+- **Build Tools**: Vite 
+               
+
+
+## 📦 Installation Guide
+
+### ✅ Prerequisites
+
+Before you begin, make sure you have:
+
+- **Node.js** (v18 or later) – [Download](https://nodejs.org/)
+- **npm** or **yarn**
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/lipika1911/cnapp-dashboard.git
+```
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Run the App
+
+```bash
+npm run dev
+```
+
+### ✅ You’re all set!
+- Open http://localhost:5173 in your browser.

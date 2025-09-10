@@ -60,32 +60,32 @@ export const useDashboardStore = create((set, get) => ({
       }
     }),
 
-    getFilteredWidgets: () => {
-        const { categories, searchQuery } = get()
-        if (!searchQuery) return categories.flatMap((cat) => cat.widgets)
+  getFilteredWidgets: () => {
+    const { categories, searchQuery } = get()
+    if (!searchQuery) return categories.flatMap((cat) => cat.widgets)
 
-        return categories.flatMap((cat) =>
-        cat.widgets.filter((widget) =>
-            widget.name.toLowerCase().includes(searchQuery.toLowerCase())
-        )
-        )
-    },
+    return categories.flatMap((cat) =>
+      cat.widgets.filter((widget) =>
+        widget.name.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    )
+  },
 
-    removeWidget: (widgetId) =>
-        set((state) => {
-        const updatedActiveWidgets = state.activeWidgets.filter(
-            (id) => id !== widgetId
-        )
-        const updatedCategories = state.categories.map((category) => ({
-            ...category,
-            widgets: category.widgets.filter(
-            (widget) => !(widget.id === widgetId && widget.isCustom)
-            ),
-        }))
+  removeWidget: (widgetId) =>
+    set((state) => {
+      const updatedActiveWidgets = state.activeWidgets.filter(
+        (id) => id !== widgetId
+      )
+      const updatedCategories = state.categories.map((category) => ({
+        ...category,
+        widgets: category.widgets.filter(
+          (widget) => !(widget.id === widgetId && widget.isCustom)
+        ),
+      }))
 
-        return {
-            activeWidgets: updatedActiveWidgets,
-            categories: updatedCategories,
-        }
+      return {
+        activeWidgets: updatedActiveWidgets,
+        categories: updatedCategories,
+      }
     }),
 }))
