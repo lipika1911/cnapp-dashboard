@@ -3,6 +3,10 @@
 
 A cloud-native application security dashboard built with **React, Vite, Tailwind CSS, MUI, Recharts, and Zustand.**
 
+## 💻 Deployed App
+
+👉 [Try it live!](https://cnapp-dashboard-mu.vercel.app/)
+
 
 ## ✨ Features
 
