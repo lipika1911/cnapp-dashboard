@@ -56,4 +56,22 @@ export const useDashboardStore = create((set, get) => ({
         showCreateCustomWidget: false,
       }
     }),
+
+    removeWidget: (widgetId) =>
+        set((state) => {
+        const updatedActiveWidgets = state.activeWidgets.filter(
+            (id) => id !== widgetId
+        )
+        const updatedCategories = state.categories.map((category) => ({
+            ...category,
+            widgets: category.widgets.filter(
+            (widget) => !(widget.id === widgetId && widget.isCustom)
+            ),
+        }))
+
+        return {
+            activeWidgets: updatedActiveWidgets,
+            categories: updatedCategories,
+        }
+    }),
 }))

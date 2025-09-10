@@ -1,8 +1,9 @@
 import { Card, CardContent, CardHeader } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import CloseIcon from "@mui/icons-material/Close";
 import ChartRenderer from "./ChartRenderer";
 
-export function WidgetCard({ widget, onAddWidget, isEmpty}) {
+export function WidgetCard({ widget, onAddWidget, isEmpty, onRemoveWidget}) {
   if (isEmpty) {
     return (
       <Card
@@ -22,6 +23,12 @@ export function WidgetCard({ widget, onAddWidget, isEmpty}) {
   if (widget.chart === "custom") {
     return (
       <Card className="h-80 relative overflow-hidden">
+        <button
+          onClick={onRemoveWidget}
+          className="absolute top-2 right-2 p-1 rounded-full bg-gray-100 hover:bg-gray-200"
+        >
+          <CloseIcon fontSize="small" className="text-gray-600" />
+        </button>
         <CardHeader
           className="pb-2"
           title={
@@ -44,6 +51,12 @@ export function WidgetCard({ widget, onAddWidget, isEmpty}) {
 
   return (
     <Card className="h-80 relative overflow-hidden">
+        <button
+        onClick={onRemoveWidget}
+        className="absolute top-2 right-2 p-1 rounded-full bg-gray-100 hover:bg-gray-200"
+      >
+        <CloseIcon fontSize="small" className="text-gray-600" />
+      </button>
       <CardHeader
         className="pb-2"
         title={

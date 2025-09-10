@@ -13,6 +13,7 @@ export function Dashboard() {
     activeWidgets,
     setSidebarOpen,
     openSidebarWithCategory,
+    removeWidget,
   } = useDashboardStore();
 
   const allWidgets = categories.flatMap((category) => category.widgets);
@@ -88,6 +89,7 @@ export function Dashboard() {
                   <WidgetCard
                     key={widget.id}
                     widget={widget}
+                    onRemoveWidget={() => removeWidget(widget.id)}
                   />
                 ))}
                 <WidgetCard
