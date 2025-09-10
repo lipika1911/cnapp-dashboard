@@ -15,6 +15,7 @@ export const useDashboardStore = create((set, get) => ({
   ],
   sidebarOpen: false,
   selectedCategory: "cspm",
+  searchQuery: "",
   showCreateCustomWidget: false,
 
   toggleWidget: (widgetId) =>
@@ -30,6 +31,8 @@ export const useDashboardStore = create((set, get) => ({
 
   openSidebarWithCategory: (categoryId) =>
     set({ sidebarOpen: true, selectedCategory: categoryId }),
+
+  setSearchQuery: (query) => set({ searchQuery: query }),
 
   setShowCreateCustomWidget: (show) => set({ showCreateCustomWidget: show }),
 
@@ -56,6 +59,17 @@ export const useDashboardStore = create((set, get) => ({
         showCreateCustomWidget: false,
       }
     }),
+
+    getFilteredWidgets: () => {
+        const { categories, searchQuery } = get()
+        if (!searchQuery) return categories.flatMap((cat) => cat.widgets)
+
+        return categories.flatMap((cat) =>
+        cat.widgets.filter((widget) =>
+            widget.name.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+        )
+    },
 
     removeWidget: (widgetId) =>
         set((state) => {
