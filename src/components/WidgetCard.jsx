@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import ChartRenderer from "./ChartRenderer";
 
 export function WidgetCard({ widget, onAddWidget, isEmpty}) {
   if (isEmpty) {
@@ -52,6 +53,7 @@ export function WidgetCard({ widget, onAddWidget, isEmpty}) {
         }
       />
       <CardContent className="overflow-hidden">
+        <ChartRenderer widget={widget} />
       </CardContent>
     </Card>
   );
