@@ -33,7 +33,7 @@ A cloud-native application security dashboard built with **React, Vite, Tailwind
 
 ## 📦 Installation Guide
 
-### ✅ Prerequisites
+### Prerequisites
 
 Before you begin, make sure you have:
 
