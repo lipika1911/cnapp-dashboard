@@ -1,9 +1,7 @@
-function App(){
-  return(
-    <div>
-      App
-    </div>
-  )
+import {Dashboard} from "./components/Dashboard"
+
+function App() {
+  return <Dashboard />
 }
 
 export default App
